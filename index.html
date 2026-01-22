@@ -3,218 +3,473 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name - Portfolio</title>
+  <title>Bennie Reynolds - Portfolio</title>
   <style>
-    /* ===== BASIC RESET AND STYLES ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #1a1a1a;
+      background: #fafaf8;
       line-height: 1.6;
-      color: #333;
-      background-color: #f9f9f9;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    h1, h2, h3 {
-      margin-bottom: 1rem;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+      overflow-x: hidden;
     }
 
-    /* ===== HEADER / HERO ===== */
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    /* ===== HERO ===== */
     header {
-      background: linear-gradient(to right, #4e54c8, #8f94fb);
-      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f5f1e8 0%, #e8dfd5 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(230, 200, 150, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      right: -200px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(200, 170, 130, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -150px;
+      left: -150px;
+      animation: float 12s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(30px); }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 10;
       text-align: center;
-      padding: 100px 20px;
     }
+
     header h1 {
-      font-size: 3rem;
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
     }
+
     header p {
-      font-size: 1.4rem;
-      margin-top: 0.5rem;
+      font-size: 1.3rem;
+      color: #666;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      letter-spacing: 0.5px;
+    }
+
+    .interests {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    .interest-tag {
+      font-size: 0.95rem;
+      color: #8b7d6b;
+      border: 1px solid #d4c4b0;
+      padding: 8px 16px;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .interest-tag:hover {
+      border-color: #8b7d6b;
+      color: #1a1a1a;
+      background: rgba(139, 125, 107, 0.05);
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 40px;
+      background: #1a1a1a;
+      color: #fafaf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: all 0.4s ease;
+      border: 1px solid #1a1a1a;
+    }
+
+    .cta-button:hover {
+      background: transparent;
+      color: #1a1a1a;
     }
 
     /* ===== SECTIONS ===== */
     section {
-      padding: 60px 0;
-    }
-    #about, #skills, #contact {
-      background: white;
-    }
-    #projects {
-      background: #f0f4f8;
+      padding: 100px 0;
+      border-bottom: 1px solid #e8dfd5;
     }
 
-    /* Project cards */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 2rem;
-    }
-    .project-card {
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
-    .project-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .project-info {
-      padding: 20px;
+    section:last-of-type {
+      border-bottom: none;
     }
 
-    /* Skills list */
-    .skills-list {
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+    }
+
+    /* ===== ABOUT ===== */
+    #about p {
+      font-size: 1.05rem;
+      color: #4a4a4a;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects-container {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 1.5rem;
-    }
-    .skill {
-      background: #e0e0e0;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.95rem;
+      flex-direction: column;
+      gap: 50px;
     }
 
-    /* Footer */
+    .project-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      padding: 40px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .project-item:hover {
+      background: #fafaf8;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+
+    .project-item:nth-child(even) {
+      direction: rtl;
+    }
+
+    .project-item:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .project-content h3 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
+    }
+
+    .project-content p {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .project-links a {
+      padding: 10px 24px;
+      background: #f0ebe3;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      border: 1px solid #e8dfd5;
+    }
+
+    .project-links a:hover {
+      background: #1a1a1a;
+      color: #fafaf8;
+    }
+
+    .project-visual {
+      background: linear-gradient(135deg, #e8dfd5 0%, #f5f1e8 100%);
+      padding: 40px;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      font-size: 0.9rem;
+      color: #8b7d6b;
+      text-align: center;
+    }
+
+    /* ===== SKILLS ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      padding: 25px;
+      background: #fff;
+      border-radius: 2px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #f0ebe3;
+    }
+
+    .skill-card:hover {
+      background: #fafaf8;
+      border-color: #d4c4b0;
+      transform: translateY(-3px);
+    }
+
+    .skill-card p {
+      font-size: 0.95rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      text-align: center;
+    }
+
+    #contact p {
+      font-size: 1.05rem;
+      color: #666;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .contact-links a:hover {
+      border-bottom: 1px solid #1a1a1a;
+      color: #666;
+    }
+
+    /* ===== FOOTER ===== */
     footer {
       text-align: center;
-      padding: 30px;
-      background: #333;
-      color: white;
+      padding: 60px 0;
+      font-size: 0.9rem;
+      color: #999;
+      border-top: 1px solid #e8dfd5;
     }
 
-    /* Responsive adjustments */
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      header h1 { font-size: 2.5rem; }
-      header { padding: 80px 20px; }
+      header h1 {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .project-item {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 25px;
+      }
+
+      .project-item:nth-child(even) {
+        direction: ltr;
+      }
+
+      .interests {
+        gap: 10px;
+      }
+
+      .contact-links {
+        gap: 20px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== HERO / INTRO SECTION ===== -->
+  <!-- ===== HERO ===== -->
   <header>
-    <div class="container">
-      <h1><!-- CHANGE THIS -->Your Name Here</h1>
-      <p><!-- CHANGE THIS -->Lorem | Ipsum | Lorem Ipsum</p>
+    <div class="header-content">
+      <h1>Bennie Reynolds</h1>
+      <p>M.S. Economic Analytics</p>
+      
+      <div class="interests">
+        <span class="interest-tag">Game Theory</span>
+        <span class="interest-tag">Deep Learning</span>
+        <span class="interest-tag">Quantitative Finance</span>
+        <span class="interest-tag">Data Science</span>
+      </div>
+
+      <a href="#projects" class="cta-button">Explore Work</a>
     </div>
   </header>
 
-  <!-- ===== ABOUT / BIO SECTION ===== -->
+  <!-- ===== ABOUT ===== -->
   <section id="about">
     <div class="container">
-      <h2>About Me</h2>
-      <p><!-- CHANGE THIS -->Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      
-      <p><!-- CHANGE THIS -->Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      
-      <!-- Optional: Add a profile photo (upload your photo to the repo as 'profile.jpg' and update the src) -->
-      <!-- <img src="profile.jpg" alt="Your Photo" style="width:200px; border-radius:50%; display:block; margin:2rem auto;"> -->
+      <h2>About</h2>
+      <p>M.S. candidate in Economic Analytics with foundations in Economics and Computer Science. I explore intersections between economic theory and computational intelligence—game-theoretic applications, deep learning methodologies, and quantitative finance strategies.</p>
+      <p>Focused on research that bridges rigorous mathematics with practical implementation, seeking meaningful applications in finance, analysis, and data-driven decision making.</p>
     </div>
   </section>
 
-  <!-- ===== PROJECTS SECTION ===== -->
+  <!-- ===== PROJECTS ===== -->
   <section id="projects">
     <div class="container">
-      <h2>My Projects</h2>
-      <p><!-- CHANGE THIS -->Here are some things I've built. Click the links to see them live or view the code on GitHub.</p>
+      <h2>Selected Work</h2>
+      
+      <div class="projects-container">
 
-      <div class="projects-grid">
-
-        <!-- PROJECT 1 - Duplicate this block for more projects -->
-        <div class="project-card">
-          <!-- Optional: Add a screenshot (upload image to repo and update src) -->
-          <!-- <img src="project1-screenshot.png" alt="Project 1"> -->
-          <div class="project-info">
-            <h3><!-- CHANGE THIS -->Project One Title</h3>
-            <p><!-- CHANGE THIS -->A short description of what this project does, technologies used (e.g., HTML, CSS, JavaScript), and what you learned.</p>
-            <p>
-              <a href="https://github.com/yourusername/project-one" target="_blank">View on GitHub</a> | 
-              <a href="https://yourusername.github.io/project-one" target="_blank">Live Demo</a>
-            </p>
+        <!-- Project 1 -->
+        <div class="project-item">
+          <div class="project-content">
+            <h3>Stochastic Fractal Hybrid Market Classifier</h3>
+            <p>Advanced financial classifier combining stochastic processes and fractal analysis for market directional prediction. Integrates quantitative finance theory with machine learning for robust market signal detection and classification.</p>
+            <div class="project-links">
+              <a href="https://github.com/benn-reyn/Stochastic-Fractal-Hybrid-Market-Directional-Classifier" target="_blank">View Repository</a>
+            </div>
+          </div>
+          <div class="project-visual">
+            📊 Stochastic Processes & Fractal Analysis
           </div>
         </div>
 
-        <!-- PROJECT 2 - Add more by copying the above block -->
-        <div class="project-card">
-          <!-- <img src="project2-screenshot.png" alt="Project 2"> -->
-          <div class="project-info">
-            <h3><!-- CHANGE THIS -->Project Two Title</h3>
-            <p><!-- CHANGE THIS -->Description here. Make it sound exciting!</p>
-            <p>
-              <a href="#" target="_blank">View on GitHub</a> | 
-              <a href="#" target="_blank">Live Demo</a>
-            </p>
+        <!-- Project 2 -->
+        <div class="project-item">
+          <div class="project-content">
+            <h3>Strategy Testing Platform</h3>
+            <p>Comprehensive backtesting and analysis framework for trading strategies. Real-time performance metrics, detailed analytics, and strategy optimization tools designed for quantitative researchers.</p>
+            <div class="project-links">
+              <a href="https://github.com/benn-reyn/strategyTesting" target="_blank">View Repository</a>
+              <a href="https://resume-website-3qe7.vercel.app" target="_blank">Live Demo</a>
+            </div>
+          </div>
+          <div class="project-visual">
+            📈 Strategy Backtesting Engine
           </div>
         </div>
 
-        <!-- Add as many more project cards as you want -->
+        <!-- Project 3 -->
+        <div class="project-item">
+          <div class="project-content">
+            <h3>Resume & Portfolio Site</h3>
+            <p>Personal portfolio showcasing research, projects, and technical work. Built with modern web technologies for performance and aesthetics, deployed on Vercel.</p>
+            <div class="project-links">
+              <a href="https://resume-website-3qe7.vercel.app" target="_blank">Visit Site</a>
+            </div>
+          </div>
+          <div class="project-visual">
+            💼 Modern Web Portfolio
+          </div>
+        </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ===== SKILLS / RESUME ELEMENTS SECTION ===== -->
+  <!-- ===== SKILLS ===== -->
   <section id="skills">
     <div class="container">
-      <h2>Skills & Experience</h2>
-      <p><!-- CHANGE THIS -->Things I'm good at or learning right now:</p>
-
-      <div class="skills-list">
-        <span class="skill"><!-- CHANGE/ADD -->Python</span>
-        <span class="skill"><!-- CHANGE/ADD -->R & R shiny</span>
-        <span class="skill"><!-- CHANGE/ADD -->Git & GitHub</span>
-        <!-- Add more <span class="skill">Skill Name</span> lines here -->
+      <h2>Technical Skills</h2>
+      
+      <div class="skills-grid">
+        <div class="skill-card"><p>Python</p></div>
+        <div class="skill-card"><p>Deep Learning</p></div>
+        <div class="skill-card"><p>PyTorch / TensorFlow</p></div>
+        <div class="skill-card"><p>Game Theory</p></div>
+        <div class="skill-card"><p>Quantitative Finance</p></div>
+        <div class="skill-card"><p>Statistical Analysis</p></div>
+        <div class="skill-card"><p>Machine Learning</p></div>
+        <div class="skill-card"><p>Economic Modeling</p></div>
+        <div class="skill-card"><p>Data Science</p></div>
+        <div class="skill-card"><p>SQL & Databases</p></div>
       </div>
 
-      <!-- Optional: Add education or resume highlights -->
-      <h3 style="margin-top: 2rem;">Education</h3>
-      <p><!-- CHANGE THIS -->High School / College / University — [Year]–Present<br>
-         Major: [Your Major]</p>
+      <h2 style="margin-top: 5rem;">Education</h2>
+      <p style="font-size: 1.05rem; color: #4a4a4a;">
+        <strong>M.S. in Economic Analytics</strong> — In Progress<br>
+        <strong>B.S. in Economics & Computer Science</strong><br>
+        <em>Research: Game Theory, Deep Learning, Quantitative Finance, Data Science</em>
+      </p>
     </div>
   </section>
 
-  <!-- ===== CONTACT SECTION ===== -->
+  <!-- ===== CONTACT ===== -->
   <section id="contact">
     <div class="container">
       <h2>Get in Touch</h2>
-      <p><!-- CHANGE THIS -->I'm always open to chatting about projects or internships.</p>
-      <ul style="list-style: none; margin-top: 1rem;">
-        <li>Email: <!-- CHANGE THIS -->your.email@example.com</li>
-        <li>GitHub: <!-- CHANGE THIS --><a href="https://github.com/yourusername">github.com/yourusername</a></li>
-        <li>LinkedIn: <!-- CHANGE THIS --><a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a></li>
-        <!-- Add more links (Twitter/X, etc.) -->
-      </ul>
+      <p>Open to research opportunities, collaborations, and meaningful conversations.</p>
+      
+      <div class="contact-links">
+        <a href="mailto:your.email@example.com">Email</a>
+        <a href="https://github.com/benn-reyn" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+        <a href="https://resume-website-3qe7.vercel.app" target="_blank">Portfolio</a>
+      </div>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <p>&copy; <!-- CHANGE THIS -->2026 Your Name. Built with HTML & CSS. Hosted on GitHub Pages.</p>
+    <p>&copy; 2026 Bennie Reynolds</p>
+    <p>Economics, Computation, and Strategy</p>
   </footer>
 
 </body>
